@@ -1,0 +1,50 @@
+version: '3'
+services:
+
+  app:
+    hostname: app
+    build:
+      context: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/home/app/mongodb-replicaset
+      - /home/app/mongodb-replicaset/node_modules
+    depends_on:
+      - mongodbConfig
+
+  mongodb3:
+    image: mongo:3.3
+    ports: 
+      - 27019:27017
+      - 28019:28017
+    command: mongod --replSet "rs"
+
+  mongodb2:
+    image: mongo:3.3
+    ports: 
+      - 27018:27017
+      - 28018:28017
+    command: mongod --replSet "rs"
+
+  mongodb1:
+    image: mongo:3.3
+    ports: 
+      - 27017:27017
+      - 28017:28017
+    depends_on:
+      - mongodb2
+      - mongodb3
+    command: mongod --replSet "rs"
+
+  mongodbConfig:
+    image: mongo:3.3
+    volumes:
+      - ./scripts/:/scripts
+    command: bash -c "chmod +x /scripts/mongodb_config.sh && ./scripts/mongodb_config.sh"
+    links:
+      - mongodb1
+      - mongodb2
+      - mongodb3
