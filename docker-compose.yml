@@ -20,14 +20,14 @@ services:
     ports: 
       - 27019:27017
       - 28019:28017
-    command: mongod --replSet "rs"
+    command: mongod --replSet "rs" --smallfiles --oplogSize 128
 
   mongodb2:
     image: mongo:3.3
     ports: 
       - 27018:27017
       - 28018:28017
-    command: mongod --replSet "rs"
+    command: mongod --replSet "rs" --smallfiles --oplogSize 128
 
   mongodb1:
     image: mongo:3.3
@@ -37,7 +37,7 @@ services:
     depends_on:
       - mongodb2
       - mongodb3
-    command: mongod --replSet "rs"
+    command: mongod --replSet "rs" --smallfiles --oplogSize 128
 
   mongodbConfig:
     image: mongo:3.3
