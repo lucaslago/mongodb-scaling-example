@@ -38,6 +38,10 @@ services:
       - mongodb3
     command: mongod --replSet "rs" --smallfiles --oplogSize 128
 
+  mongodbConfigServer:
+    image: mongo:3.0.14
+    command: mongod --configsvr --smallfiles
+
   mongodbConfig:
     image: mongo:3.0.14
     volumes:
