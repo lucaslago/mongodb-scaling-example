@@ -11,26 +11,24 @@ services:
     volumes:
       - .:/home/app/mongodb-replicaset
       - /home/app/mongodb-replicaset/node_modules
-    depends_on:
-      - mongodbConfig
 
   mongodb3:
     image: mongo:3.0.14
-    command: mongod --replSet "rs" --smallfiles --oplogSize 128
+    command: mongod --replSet "rs0" --smallfiles --oplogSize 128
 
   mongodb2:
     image: mongo:3.0.14
-    command: mongod --replSet "rs" --smallfiles --oplogSize 128
+    command: mongod --replSet "rs0" --smallfiles --oplogSize 128
 
   mongodb1:
     image: mongo:3.0.14
-    command: mongod --replSet "rs" --smallfiles --oplogSize 128
+    command: mongod --replSet "rs0" --smallfiles --oplogSize 128
 
-  mongodbConfig:
+  mongodbConfigRs0:
     image: mongo:3.0.14
     volumes:
       - ./scripts/:/scripts
-    command: bash -c "chmod +x /scripts/mongodb_config.sh && ./scripts/mongodb_config.sh"
+    command: bash -c "chmod +x /scripts/mongodb_rs0_config.sh && ./scripts/mongodb_rs0_config.sh"
 
   mongodb4:
     image: mongo:3.0.14
