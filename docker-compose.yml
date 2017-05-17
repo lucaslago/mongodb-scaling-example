@@ -15,21 +15,21 @@ services:
       - mongodbConfig
 
   mongodb3:
-    image: mongo:3.3
+    image: mongo:3.0.14
     ports: 
       - 27019:27017
       - 28019:28017
     command: mongod --replSet "rs" --smallfiles --oplogSize 128
 
   mongodb2:
-    image: mongo:3.3
+    image: mongo:3.0.14
     ports: 
       - 27018:27017
       - 28018:28017
     command: mongod --replSet "rs" --smallfiles --oplogSize 128
 
   mongodb1:
-    image: mongo:3.3
+    image: mongo:3.0.14
     ports: 
       - 27017:27017
       - 28017:28017
@@ -39,11 +39,7 @@ services:
     command: mongod --replSet "rs" --smallfiles --oplogSize 128
 
   mongodbConfig:
-    image: mongo:3.3
+    image: mongo:3.0.14
     volumes:
       - ./scripts/:/scripts
     command: bash -c "chmod +x /scripts/mongodb_config.sh && ./scripts/mongodb_config.sh"
-    links:
-      - mongodb1
-      - mongodb2
-      - mongodb3
