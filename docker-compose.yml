@@ -42,6 +42,11 @@ services:
     image: mongo:3.0.14
     command: mongod --configsvr --smallfiles
 
+  mongodbRouter:
+    image: mongo:3.0.14
+    command: mongos --configdb mongodbConfigServer
+
+
   mongodbConfig:
     image: mongo:3.0.14
     volumes:
