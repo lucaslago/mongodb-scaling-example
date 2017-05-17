@@ -46,6 +46,11 @@ services:
     image: mongo:3.0.14
     command: mongos --configdb mongodbConfigServer
 
+  shardConfig:
+    image: mongo:3.0.14
+    command: bash -c "chmod +x /scripts/shard_config.sh && ./scripts/shard_config.sh"
+    volumes:
+      - ./scripts/:/scripts
 
   mongodbConfig:
     image: mongo:3.0.14
