@@ -44,6 +44,12 @@ services:
     image: mongo:3.0.14
     command: mongod --replSet "rs1" --smallfiles --oplogSize 128
 
+  mongodbConfigRs1:
+    image: mongo:3.0.14
+    volumes:
+      - ./scripts/:/scripts
+    command: bash -c "chmod +x /scripts/mongodb_rs1_config.sh && ./scripts/mongodb_rs1_config.sh"
+
   mongodbConfigServer:
     image: mongo:3.0.14
     command: mongod --configsvr --smallfiles
