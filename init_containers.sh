@@ -2,14 +2,10 @@
 echo 'Starting MongoDB instances'
 docker-compose up -d mongodb1 mongodb2 mongodb3 mongodb4 mongodb5 mongodb6
 
-sleep 60
+sleep 70
 
-echo 'Configuring rs0'
+echo 'Configuring rs0 rs1'
 docker-compose up mongodbConfigRs0
-
-sleep 10
-
-echo 'Configuring rs1'
 docker-compose up mongodbConfigRs1
 
 sleep 10
