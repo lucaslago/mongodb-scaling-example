@@ -25,4 +25,4 @@ docker-compose up -d mongodbRouter
 sleep 60
 
 echo 'Configuring shards'
-docker-compose up -d shardConfig
+docker-compose up shardConfig

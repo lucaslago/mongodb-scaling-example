@@ -55,6 +55,8 @@ services:
   mongodbRouter:
     image: mongo:3.0.14
     command: mongos --configdb mongodbConfigServer
+    volumes:
+      - ./scripts/:/scripts
 
   shardConfig:
     image: mongo:3.0.14
