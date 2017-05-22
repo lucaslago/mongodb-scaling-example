@@ -5,13 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index"
+    "start": "node ./index"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.2",
-    "mongoose": "^4.8.6"
+    "harvesterjs": "git+https://github.com/agco/harvesterjs.git#3.0.2"
   }
 }

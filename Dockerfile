@@ -2,12 +2,12 @@ FROM node:6.9.1
 
 ENV HOME=/home/app
 
-COPY package.json $HOME/mongodb-replicaset/
+COPY package.json $HOME/mongodb-scaling-example/
 
-WORKDIR $HOME/mongodb-replicaset
+WORKDIR $HOME/mongodb-scaling-example/
 
-RUN npm cache clean && npm install
+RUN npm install
 
-COPY . $HOME/mongodb-replicaset
+COPY . $HOME/mongodb-scaling-example/
 
 CMD ["npm", "start"]

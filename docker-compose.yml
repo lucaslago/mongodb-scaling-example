@@ -1,7 +1,6 @@
 version: '3'
 services:
   app:
-    hostname: app
     build:
       context: .
     environment:
@@ -9,8 +8,8 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - .:/home/app/mongodb-replicaset
-      - /home/app/mongodb-replicaset/node_modules
+      - .:/home/app/mongodb-scaling-example
+      - /home/app/mongodb-scaling-example/node_modules
 
   mongodb3:
     image: mongo:3.0.14
