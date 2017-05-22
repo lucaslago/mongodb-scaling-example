@@ -13,7 +13,7 @@ const options = {
 
 // define 2 resources
 const harvestApp = harvest(options)
-  .resource('author', {
+  .resource('kitten', {
     name: Joi.string()
   })
   .onChange({
@@ -26,10 +26,6 @@ const harvestApp = harvest(options)
     delete: (id) => {
       console.log(`deleted: ${id}`);
     }
-  })
-  .resource('book', {
-    title: Joi.string(),
-    author: 'author'
   });
 
 module.exports = harvestApp;
